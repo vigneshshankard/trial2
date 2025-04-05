@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../index');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const { Quiz } = require('../models/quizModel'); // Correctly destructure the Quiz model from the exported object
+const Quiz = require('../models/quizModel'); // Correctly import the Quiz model
 const jwt = require('jsonwebtoken'); // Import jsonwebtoken
 
 let mongoServer;

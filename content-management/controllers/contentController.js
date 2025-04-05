@@ -16,6 +16,7 @@ exports.getStudyMaterials = async (req, res, next) => {
 
         res.status(200).json(materials);
     } catch (error) {
+        console.error('Error in getStudyMaterials:', error);
         next(error);
     }
 };
@@ -29,6 +30,7 @@ exports.getCurrentAffairs = async (req, res, next) => {
         const currentAffairs = await CurrentAffair.find(filter);
         res.status(200).json({ success: true, data: currentAffairs });
     } catch (error) {
+        console.error('Error in getCurrentAffairs:', error);
         next(error);
     }
 };

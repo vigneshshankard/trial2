@@ -201,13 +201,27 @@ exports.getGroupDetails = async (req, res, next) => {
   }
 };
 
-// Send a message in a group
+// Complete the sendGroupMessage function
 exports.sendGroupMessage = async (req, res, next) => {
   try {
     const { groupId } = req.params;
     const { content } = req.body;
 
     const group = await Group.findById(groupId);
+
+    if (!group) {
+      return res.status(404).json({ message: 'Group not found' });
+    }
+
+    const message = { sender: req.user.id, content };
+    group.messages.push(message);
+    await group.save();
+
+    res.status(201).json({ message: 'Message sent successfully', message });
+  } catch (err) {
+    next(err);
+  }
+};
 
 // Fetch suggested friends
 exports.getSuggestedFriends = async (req, res, next) => {
@@ -249,4 +263,21 @@ exports.reportContent = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports = {
+  getPosts,
+  createPost,
+  sendFriendRequest,
+  acceptFriendRequest,
+  rejectFriendRequest,
+  listFriends,
+  getChatMessages,
+  sendChatMessage,
+  sendMessageWithQueue,
+  createGroup,
+  getGroupDetails,
+  sendGroupMessage,
+  getSuggestedFriends,
+  reportContent,
 };

@@ -32,6 +32,7 @@ exports.generatePlan = async (req, res, next) => {
             plan: newPlan 
         });
     } catch (error) {
+        console.error('Error in generatePlan:', error);
         if (error.type === 'circuit-breaker') {
             return res.status(503).json({
                 message: 'AI Study Planner temporarily unavailable',
@@ -72,6 +73,7 @@ exports.getPlan = async (req, res, next) => {
 
         res.status(200).json(plan);
     } catch (error) {
+        console.error('Error in getPlan:', error);
         if (error.type === 'circuit-breaker') {
             return res.status(503).json({
                 message: 'Unable to fetch study plan at this time',
@@ -116,6 +118,7 @@ exports.updatePlan = async (req, res, next) => {
             plan: updatedPlan 
         });
     } catch (error) {
+        console.error('Error in updatePlan:', error);
         if (error.type === 'circuit-breaker') {
             return res.status(503).json({
                 message: 'Unable to update study plan at this time',

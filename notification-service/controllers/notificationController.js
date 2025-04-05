@@ -31,6 +31,7 @@ exports.sendNotification = async (req, res, next) => {
                 error: error.message
             });
         }
+        console.error('Error in sendNotification:', error);
         next(error);
     }
 };
@@ -62,6 +63,7 @@ exports.getNotifications = async (req, res, next) => {
                 error: error.message
             });
         }
+        console.error('Error in getNotifications:', error);
         next(error);
     }
 };
@@ -72,6 +74,7 @@ exports.getPriorityNotifications = async (req, res, next) => {
         const notifications = await Notification.find({ type: 'priority' });
         res.status(200).json(notifications);
     } catch (error) {
+        console.error('Error in getPriorityNotifications:', error);
         next(error); // Pass error to global error handler
     }
 };
@@ -90,6 +93,7 @@ exports.updateNotificationPreferences = async (req, res, next) => {
 
     res.status(200).json({ message: 'Preferences updated successfully', preferences });
   } catch (error) {
+    console.error('Error in updateNotificationPreferences:', error);
     next(error);
   }
 };

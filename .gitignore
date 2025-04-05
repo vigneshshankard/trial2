@@ -1,2 +1,19 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore database files if not needed
+*.db
+*.sqlite
+
+# Ignore build artifacts
+dist/
+build/
+
 # Ignore large files
 node_modules/.cache/mongodb-memory-server/mongod-x64-ubuntu-7.0.14
